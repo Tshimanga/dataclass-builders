@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dataclass-builders"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Bidimpata-Kerim Ntumba Tshimanga <bk.tshimanga@gmail.com>"]
 
