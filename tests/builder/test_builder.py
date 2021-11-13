@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from unittest import TestCase
 
-from dataclass_builder.builder import Builder
+from dataclass_builders.builder import Builder
 
 
 class TestBuilder(TestCase):

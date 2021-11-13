@@ -1,6 +1,6 @@
 from typing import Any
 
-from dataclass_builder.builder import Builder
+from dataclass_builders.builder import Builder
 
 
 class HasBuilder:
