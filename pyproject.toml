@@ -8,7 +8,7 @@ authors = ["Bidimpata-Kerim Ntumba Tshimanga <bk.tshimanga@gmail.com>"]
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^6.2.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
