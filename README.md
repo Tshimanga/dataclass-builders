@@ -1,3 +1,5 @@
+![Actions Status](https://github.com/qurius-inc/dataclass-builders/actions/workflows/continuous-integration.yaml/badge.svg)
+
 # Dataclass Builder
 
 This is a small library for parametric builder patterns for

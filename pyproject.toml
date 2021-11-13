@@ -2,7 +2,7 @@
 name = "dataclass-builders"
 version = "0.1.0"
 description = ""
-authors = ["Bidimpata-Kerim Ntuma Tshimanga <bk.tshimanga@gmail.com>"]
+authors = ["Bidimpata-Kerim Ntumba Tshimanga <bk.tshimanga@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

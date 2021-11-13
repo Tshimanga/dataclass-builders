@@ -1,0 +1,36 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - release/*
+  pull_request:
+    branches:
+      - main
+      - develop
+      - release/*
+
+jobs:
+  unittest:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry
+        run: pip install --upgrade pip poetry
+
+      - name: Install Project Dependencies
+        run: poetry install
+
+      - name: Run tests
+        run: poetry run pytest
