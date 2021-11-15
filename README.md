@@ -1,4 +1,4 @@
-![Actions Status](https://github.com/qurius-inc/dataclass-builders/actions/workflows/continuous-integration.yaml/badge.svg)
+![Actions Status](https://github.com/Tshimanga/dataclass-builders/actions/workflows/continuous-integration.yaml/badge.svg)
 
 # Dataclass Builder
 

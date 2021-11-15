@@ -1,29 +1,62 @@
-from dataclasses import dataclass, fields, Field, MISSING
+from dataclasses import fields, Field, MISSING, is_dataclass
 from functools import partial
-from typing import Any, Dict, get_args, get_origin, Union, List
+from typing import Any, Dict, get_args, get_origin, Union, List, Optional, Set, TypeVar
+
+
+TargetDataclass = TypeVar('TargetDataclass')
 
 
 class Builder:
+    """@DynamicAttrs"""
+    NEWLINE = '\n'
 
-    def __init__(self, target: dataclass, **kwargs: Any) -> None:
-        self.target = target
+    def __init__(self, target: TargetDataclass, **kwargs: Any) -> None:
+        if is_dataclass(target):
+            self.target = target
+        else:
+            raise ValueError(f"{self.target.__name__} is not a dataclass!")
         self._kwargs = kwargs
+        self._dir = self.field_names
         for field in self.fields:
             self._prepare_field(field.name)
+
+    def __contains__(self, item: str) -> bool:
+        return item in self.field_names
+
+    def __getitem__(self, item: str) -> Optional[Any]:
+        return getattr(self, item)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        if key in self:
+            setattr(self, key, value)
+        else:
+            raise AttributeError(
+                f"Target class, {self.target.__name__}, has no field: {key}\n"
+                f"Available fields:\n {self.NEWLINE.join(self.field_names)}"
+            )
+
+    def __dir__(self) -> List[str]:
+        return list(self._dir)
 
     @property
     def fields(self) -> List[Field]:
         return fields(self.target)
 
-    def build(self, **kwargs: Any) -> dataclass:
+    @property
+    def field_names(self) -> Set[str]:
+        return {field.name for field in self.fields}
+
+    def build(self, **kwargs: Any) -> TargetDataclass:
         constructor_args = self._prepare_args(**kwargs)
         return self.target(**constructor_args)
 
     def _prepare_field(self, field_name: str) -> None:
         setattr(self, field_name, self._kwargs[field_name] if field_name in self._kwargs else None)
-        setattr(self, f"with_{field_name}", partial(self._set, field_name=field_name))
+        setter = f"with_{field_name}"
+        setattr(self, setter, partial(self._with, field_name=field_name))
+        self._dir.add(setter)
 
-    def _set(self, value: Any, field_name: str) -> 'Builder':
+    def _with(self, value: Any, field_name: str) -> 'Builder':
         setattr(self, field_name, value)
         return self
 

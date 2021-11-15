@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, get_args
 from unittest import TestCase
 
+from dataclass_builders.builder import Builder
 from dataclass_builders.has_builder import HasBuilder
 
 

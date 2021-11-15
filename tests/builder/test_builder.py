@@ -24,6 +24,24 @@ class TestBuilder(TestCase):
         self.assertTrue(isinstance(foo, Foo))
         self.assertEqual("baz", foo.bar)
 
+    def test_can_set_via_assignment(self):
+        @dataclass(frozen=True)
+        class Foo:
+            bar: str
+
+        builder = Builder(Foo)
+        builder.bar = "baz"
+        self.assertEqual("baz", builder.build().bar)
+
+    def test_can_set_via_dict_lookup(self):
+        @dataclass(frozen=True)
+        class Foo:
+            bar: str
+
+        builder = Builder(Foo)
+        builder["bar"] = "baz"
+        self.assertEqual("baz", builder.build().bar)
+
     def test_builder_can_take_args_in_constructor(self):
         @dataclass(frozen=True)
         class Foo:
