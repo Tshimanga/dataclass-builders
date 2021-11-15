@@ -47,3 +47,9 @@ class TestBuilder(TestCase):
     def test_no_error_for_missing_optional_parameter(self):
         foo = Builder(BoringWithOptional).build()
         self.assertEqual(None, foo.foo)
+
+    def test_parameter_in_builder(self):
+        self.assertTrue("foo" in BoringWithParameter.Builder())
+
+    def test_parameter_not_in_builder(self):
+        self.assertFalse("baz" in BoringWithParameter.Builder())
