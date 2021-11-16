@@ -18,7 +18,7 @@ class Builder:
         self._kwargs = kwargs
         self._dir = self.field_names
         for field in self.fields:
-            self._prepare_field(field.name)
+            self._prepare_field(field)
 
     def __contains__(self, item: str) -> bool:
         return item in self.field_names
@@ -50,10 +50,22 @@ class Builder:
         constructor_args = self._prepare_args(**kwargs)
         return self.target(**constructor_args)
 
-    def _prepare_field(self, field_name: str) -> None:
-        setattr(self, field_name, self._kwargs[field_name] if field_name in self._kwargs else None)
-        setter = f"with_{field_name}"
-        setattr(self, setter, partial(self._with, field_name=field_name))
+    def _prepare_field(self, field: Field) -> None:
+        self._init_field_value(field)
+        self._init_setter(field)
+
+    def _init_field_value(self, field: Field) -> None:
+        if field.name in self._kwargs:
+            value = self._kwargs[field.name]
+        elif field.default is not MISSING:
+            value = field.default
+        else:
+            value = None
+        setattr(self, field.name, value)
+
+    def _init_setter(self, field: Field) -> None:
+        setter = f"with_{field.name}"
+        setattr(self, setter, partial(self._with, field_name=field.name))
         self._dir.add(setter)
 
     def _with(self, value: Any, field_name: str) -> 'Builder':

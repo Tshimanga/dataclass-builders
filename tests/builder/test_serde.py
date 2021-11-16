@@ -1,7 +1,7 @@
 import pickle
 
 from dataclass_builders.builder import Builder
-from tests.builder.helper.boring_dataclass_factory import BoringBuildable
+from tests.helper.boring_dataclasses import BoringBuildable
 
 
 def test_builder_pickles(tmp_path):
