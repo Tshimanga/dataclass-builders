@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "dataclass-builders"
+name = "parametric-builder"
 version = "0.2.0"
 description = ""
 authors = ["Bidimpata-Kerim Ntumba Tshimanga <bk.tshimanga@gmail.com>"]

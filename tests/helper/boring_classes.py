@@ -1,6 +1,6 @@
 from typing import Optional, Any
 
-from dataclass_builders.has_builder import HasBuilder
+from parametric_builder.has_builder import HasBuilder
 
 
 class BoringClass:

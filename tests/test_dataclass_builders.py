@@ -1,4 +1,4 @@
-from dataclass_builders import __version__
+from parametric_builder import __version__
 
 
 def test_version():

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from dataclass_builders.builder import Builder
+from parametric_builder.builder import Builder
 from tests.helper.boring_dataclasses import BoringDataclass, BoringWithParameter, BoringWithDefault, BoringWithOptional
 
 

@@ -3,13 +3,14 @@ from functools import partial
 from inspect import signature
 from typing import Any, TypeVar, List, Set, Optional, Dict
 
-from dataclass_builders.target_field import TargetField
+from parametric_builder.target_field import TargetField
 
 TargetClass = TypeVar('TargetClass')
 
 
 class Builder:
     """@DynamicAttrs"""
+    NEWLINE = "\n"
 
     def __init__(self, target: TargetClass, **kwargs: Any) -> None:
         self.target = target

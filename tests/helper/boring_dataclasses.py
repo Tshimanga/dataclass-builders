@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional
 
-from dataclass_builders.has_builder import HasBuilder
+from parametric_builder.has_builder import HasBuilder
 
 
 @dataclass(frozen=True)
