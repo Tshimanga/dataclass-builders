@@ -16,14 +16,17 @@ class BoringBuildable(BoringDataclass, HasBuilder):
 
 @dataclass(frozen=True)
 class BoringWithParameter(BoringBuildable):
+
     foo: str
 
 
 @dataclass(frozen=True)
 class BoringWithOptional(BoringBuildable):
+
     foo: Optional[str]
 
 
 @dataclass(frozen=True)
 class BoringWithDefault(BoringBuildable):
+
     foo: str = "bar"
