@@ -23,6 +23,12 @@ class BoringWithOptional(BoringBuildable):
         self.foo = foo
 
 
+class BoringWithNullable(BoringBuildable):
+
+        def __init__(self, foo: str | None) -> None:
+            self.foo = foo
+
+
 class BoringWithDefault(BoringBuildable):
 
     def __init__(self, foo: str = "bar") -> None:

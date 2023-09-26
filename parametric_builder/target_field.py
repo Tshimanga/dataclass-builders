@@ -12,9 +12,8 @@ class TargetField:
 
     @property
     def is_optional(self) -> bool:
-        origin = get_origin(self.type)
         args = get_args(self.type)
-        return origin is Union and type(None) in args
+        return type(None) in args
 
     @classmethod
     def from_parameter(cls, parameter: Parameter) -> 'TargetField':
