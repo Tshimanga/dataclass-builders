@@ -1,7 +1,8 @@
 import pytest
 
 from parametric_builder.builder import Builder
-from tests.helper.boring_dataclasses import BoringDataclass, BoringWithParameter, BoringWithDefault, BoringWithOptional
+from tests.helper.boring_dataclasses import BoringDataclass, BoringWithParameter, BoringWithDefault, BoringWithOptional, \
+    BoringWithNullable
 
 
 def test_builder_builds_correct_target():
@@ -53,7 +54,12 @@ def test_error_for_missing_required_parameter():
 
 def test_no_error_for_missing_optional_parameter():
     foo = Builder(BoringWithOptional).build()
-    assert None == foo.foo
+    assert foo.foo is None
+
+
+def test_no_error_for_missing_nullable_parameter():
+    foo = Builder(BoringWithNullable).build()
+    assert foo.foo is None
 
 
 def test_parameter_in_builder():

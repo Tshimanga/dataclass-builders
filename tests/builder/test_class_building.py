@@ -3,7 +3,8 @@ from typing import get_args
 import pytest
 
 from parametric_builder.builder import Builder
-from tests.helper.boring_classes import BoringClass, BoringWithParameter, BoringWithDefault, BoringWithOptional
+from tests.helper.boring_classes import BoringClass, BoringWithParameter, BoringWithDefault, BoringWithOptional, \
+    BoringWithNullable
 
 
 def test_builder_builds_correct_target():
@@ -55,6 +56,11 @@ def test_error_for_missing_required_parameter():
 
 def test_no_error_for_missing_optional_parameter():
     foo = Builder(BoringWithOptional).build()
+    assert foo.foo is None
+
+
+def test_no_error_for_missing_nullable_parameter():
+    foo = Builder(BoringWithNullable).build()
     assert foo.foo is None
 
 

@@ -27,6 +27,12 @@ class BoringWithOptional(BoringBuildable):
 
 
 @dataclass(frozen=True)
+class BoringWithNullable(BoringBuildable):
+
+    foo: str | None
+
+
+@dataclass(frozen=True)
 class BoringWithDefault(BoringBuildable):
 
     foo: str = "bar"

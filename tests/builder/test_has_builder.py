@@ -1,5 +1,7 @@
+import pytest
+
 from tests.helper.boring_classes import BoringBuildable, BoringWithParameter, BoringWithDefault, \
-    BoringWithOptional
+    BoringWithOptional, BoringWithNullable
 
 
 def test_builder_builds_correct_target():
@@ -32,10 +34,16 @@ def test_defaults_are_preserved():
     assert "bar" == foo.foo
 
 
-# def test_error_for_missing_required_parameter(self):
-#     self.assertRaises(ValueError, BoringWithParameter.Builder().build)
+def test_error_for_missing_required_parameter():
+    with pytest.raises(ValueError):
+        BoringWithParameter.Builder().build()
 
 
 def test_no_error_for_missing_optional_parameter():
     foo = BoringWithOptional.Builder().build()
+    assert foo.foo is None
+
+
+def test_no_error_for_missing_nullable_parameter():
+    foo = BoringWithNullable.Builder().build()
     assert foo.foo is None
