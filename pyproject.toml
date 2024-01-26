@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "parametric-builder"
-version = "0.3.4"
+version = "0.0.0"
 description = ""
 authors = ["Bidimpata-Kerim Ntumba Tshimanga <bk.tshimanga@gmail.com>"]
+license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.11"
